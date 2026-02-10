@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>MYWEB</title>
+
+    <!-- 공통 CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/header.css') }}">
+
+</head>
+
+<body>
+
+<!-- =========================
+     HEADER
+========================= -->
+<header class="main-header">
+
+    <!-- 좌측 -->
+    <div class="nav-left">
+        <div class="menu-icon">☰</div>
+        <a href="/">Home</a>
+    </div>
+
+    <!-- 중앙 -->
+    <div class="nav-center">
+        <a href="/" class="logo">MYWEB</a>
+    </div>
+
+    <!-- 우측 -->
+    <div class="nav-right">
+        <a href="/signup">Signup</a>
+        <a href="/login">Login</a>
+        <a href="/mypage">Mypage</a>
+    </div>
+
+</header>
+
+
+<!-- =========================
+     페이지 내용
+========================= -->
+{% block content %}
+{% endblock %}
+
+</body>
+</html>
