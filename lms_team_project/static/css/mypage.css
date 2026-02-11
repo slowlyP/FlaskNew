@@ -1,0 +1,15 @@
+.mypage-container{
+    padding:40px;
+}
+
+.mypage-box{
+    background:#fff;
+    padding:30px;
+    border-radius:12px;
+    margin-bottom:20px;
+}
+
+.mypage-menu{
+    display:flex;
+    gap:10px;
+}

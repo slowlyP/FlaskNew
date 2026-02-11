@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="mypage-container">
+
+    <h2>마이페이지</h2>
+
+    <div class="mypage-box">
+
+        <p><strong>이름 :</strong>
+           {{ session.get('user_name') }}
+        </p>
+
+        <p><strong>아이디 :</strong>
+           {{ session.get('uid') }}
+        </p>
+
+        <p><strong>권한 :</strong>
+           {{ session.get('role') }}
+        </p>
+
+    </div>
+
+    <div class="mypage-menu">
+
+        <a href="#"
+           class="btn btn-outline-primary">
+           회원정보 수정
+        </a>
+
+        <a href="#"
+           class="btn btn-outline-secondary">
+           비밀번호 변경
+        </a>
+
+        <a href="/score"
+           class="btn btn-outline-success">
+           내 성적 조회
+        </a>
+
+        <a href="/lecture"
+           class="btn btn-outline-dark">
+           내 강의 목록
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

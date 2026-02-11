@@ -1,0 +1,41 @@
+/* RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins', sans-serif;
+}
+
+
+/* HEADER */
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:15px 30px;
+    background:#111827;
+    color:#fff;
+}
+
+.logo{
+    font-size:20px;
+    font-weight:600;
+}
+
+.user-menu{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+
+/* CONTENT */
+.content{
+    padding:0;   /* Hero 전체화면 */
+    background-color: rgb(0, 0, 0);
+}
+

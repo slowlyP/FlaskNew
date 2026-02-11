@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block css %}
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock %}
+
+
+{% block content %}
+
+<section class="hero">
+
+    <div class="hero-overlay">
+
+        <h1>LMS SYSTEM</h1>
+        <p>Learning Management Platform</p>
+
+        <a href="/lecture" class="btn btn-primary btn-lg">
+            강의 시작하기
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}
