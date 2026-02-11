@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>LMS</title>
+
+    <!-- 공통 CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
+
+    <!-- 폰트 / 아이콘 (선택) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="header">
+    <div class="logo">
+        LMS SYSTEM
+    </div>
+
+    <div class="user-menu">
+        {% if session.get('user_name') %}
+            {{ session['user_name'] }} 님
+            <a href="/logout">로그아웃</a>
+        {% else %}
+            <a href="/login">로그인</a>
+        {% endif %}
+    </div>
+</header>
+
+
+<!-- ================= MAIN LAYOUT ================= -->
+<div class="container">
+
+    <!-- ===== SIDEBAR ===== -->
+    <nav class="sidebar">
+
+        <ul>
+            <li><a href="/">🏠 홈</a></li>
+            <li><a href="/board">📋 게시판</a></li>
+            <li><a href="/score">📊 성적조회</a></li>
+            <li><a href="/lecture">🎓 강의목록</a></li>
+
+            {% if session.get('role') == 'ADMIN' %}
+            <li><a href="/admin">⚙ 관리자</a></li>
+            {% endif %}
+        </ul>
+
+    </nav>
+
+
+    <!-- ===== CONTENT 영역 ===== -->
+    <main class="content">
+
+        {% block content %}
+        <!-- 각 페이지 내용 들어오는 영역 -->
+        {% endblock %}
+
+    </main>
+
+</div>
+
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+    © 2026 LMS Project
+</footer>
+
+</body>
+</html>
