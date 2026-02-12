@@ -1,45 +1,28 @@
-/* RESET */
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    font-family:'Poppins', sans-serif;
-}
-
-
-/* HEADER */
+/* 헤더 */
 .header{
+    background:#111;
+    padding:15px 40px;
     display:flex;
     justify-content:space-between;
     align-items:center;
+}
 
-    padding:15px 30px;
-    background:#111827;
+/* 로고 */
+.logo{
+    font-size:20px;
+    font-weight:bold;
     color:#fff;
 }
 
-.logo{
-    font-size:20px;
-    font-weight:600;
-}
-
+/* 메뉴 */
 .user-menu{
     display:flex;
     align-items:center;
     gap:10px;
 }
 
-
-/* CONTENT */
-.content{
-    padding:0;   /* Hero 전체화면 */
-    background-color: rgb(0, 0, 0);
-
-    min-height: calc(100vh - 80px);
-    padding:40px;
+/* 이름 */
+.user-name{
+    color:#fff;
+    margin-right:10px;
 }
-
-

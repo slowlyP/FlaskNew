@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="container mt-5" style="max-width:600px;">
+
+    <h2 class="mb-4">회원정보 수정</h2>
+
+    <div class="card shadow">
+
+        <div class="card-body">
+
+            <form method="post"
+                    enctype="multipart/form-data">
+
+                <!-- 아이디 -->
+                <div class="mb-3">
+                    <label class="form-label">아이디</label>
+                    <input type="text"
+                           class="form-control"
+                           value="{{ user.uid }}"
+                           readonly>
+                </div>
+
+                <!-- 프로필 이미지 -->
+                <div class="mb-3">
+                    <label class="form-label">프로필 이미지</label>
+                    <input type="file"
+                            name="profile"
+                            class="form-control">
+                </div>
+
+                <!-- 이름 -->
+                <div class="mb-3">
+                    <label class="form-label">이름</label>
+                    <input type="text"
+                           name="name"
+                           class="form-control"
+                           value="{{ user.name }}">
+                </div>
+
+                <!-- 비밀번호 -->
+                <div class="mb-3">
+                    <label class="form-label">새 비밀번호</label>
+                    <input type="password"
+                           name="password"
+                           class="form-control">
+                </div>
+
+                <button type="submit"
+                        class="btn btn-primary">
+                    수정하기
+                </button>
+
+                <a href="/mypage"
+                   class="btn btn-secondary">
+                   취소
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

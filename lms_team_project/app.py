@@ -1,9 +1,21 @@
 from flask import Flask, render_template,session,request,redirect
 import pymysql
+import os
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 app.secret_key = 'hello'
 
+UPLOAD_FOLDER = "static/uploads"
+app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
+
+app.config["MAX_CONTENT_LENGTH"] = 2 * 1024 * 1024
+
+ALLOWED_EXTENSIONS = {"png","jpg","jpeg","gif"}
+
+def allowed_file(filename):
+    return "." in filename and \
+        filename.rsplit(".",1)[1].lower() in ALLOWED_EXTENSIONS
 
 def get_connection():
     return pymysql.connect(
@@ -106,7 +118,7 @@ def mypage():
     try:
         with conn.cursor() as cursor:
             sql = """
-                    SELECT id, uid, name, role, created_at
+                    SELECT id, uid, name, role, created_at, profile_image
                     FROM members
                     WHERE id=%s
                 """
@@ -117,6 +129,106 @@ def mypage():
         conn.close()
 
     return render_template("mypage.html", user=user)
+
+
+    # 정보수정
+
+
+
+
+@app.route("/edit_profile", methods=["GET","POST"])
+def edit_profile():
+
+    if not session.get("user_id"):
+        return redirect("/login")
+
+    user_id=session.get("user_id")
+
+    conn=get_connection()
+
+    # ---------------- GET ----------------
+    if request.method=="GET":
+
+        with conn.cursor() as cursor:
+            sql="""
+                SELECT uid,name
+                FROM members
+                WHERE id=%s
+            """
+            cursor.execute(sql,(user_id,))
+            user=cursor.fetchone()
+
+        return render_template("edit_profile.html",user=user)
+
+    # ---------------- POST ----------------
+    # ---------------- POST ----------------
+    name=request.form.get("name")
+    password=request.form.get("password")
+    file=request.files.get("profile")
+
+    filename=None
+
+    # 파일 처리
+    if file and allowed_file(file.filename):
+
+        filename=secure_filename(file.filename)
+
+        filepath=os.path.join(
+            app.config["UPLOAD_FOLDER"],
+            filename
+        )
+
+        file.save(filepath)
+
+    with conn.cursor() as cursor:
+
+        if password and filename:
+            sql="""
+                UPDATE members
+                SET name=%s,
+                    password=%s,
+                    profile_image=%s
+                WHERE id=%s
+            """
+            cursor.execute(sql,
+                (name,password,filename,user_id))
+
+        elif filename:
+            sql="""
+                UPDATE members
+                SET name=%s,
+                    profile_image=%s
+                WHERE id=%s
+            """
+            cursor.execute(sql,
+                (name,filename,user_id))
+
+        elif password:
+            sql="""
+                UPDATE members
+                SET name=%s,
+                    password=%s
+                WHERE id=%s
+            """
+            cursor.execute(sql,
+                (name,password,user_id))
+
+        else:
+            sql="""
+                UPDATE members
+                SET name=%s
+                WHERE id=%s
+            """
+            cursor.execute(sql,
+                (name,user_id))
+
+        conn.commit()
+        conn.close()
+
+        # 세션 이름 갱신
+        session["user_name"]=name
+
+        return redirect("/mypage")
 
 
 

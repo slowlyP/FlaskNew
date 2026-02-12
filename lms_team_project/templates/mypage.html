@@ -7,43 +7,75 @@ href="{{ url_for('static', filename='css/mypage.css') }}">
 
 {% block content %}
 
-<div class="mypage-container">
+<div class="container mt-5">
 
-    <h2>마이페이지</h2>
+    <!-- 제목 -->
+    <h2 class="mb-4">마이페이지</h2>
 
-    <div class="mypage-box">
+    <!-- 회원정보 카드 -->
+    <div class="card shadow">
 
-        <p><strong>이름 :</strong>
-           {{ session.get('user_name') }}
-        </p>
+        <div class="card-header bg-dark text-white">
+            회원 정보
+        </div>
+        
 
-        <p><strong>아이디 :</strong>
-           {{ session.get('uid') }}
-        </p>
+        <div class="card-body">
+            <!-- 프로필 이미지 -->
+         {% if user.profile_image %}
+         <img src="/static/uploads/{{ user.profile_image }}"
+            width="120"
+            class="rounded-circle mb-3">
+         {% else %}
+         <img src="/static/img/default.png"
+            width="120"
+            class="rounded-circle mb-3">
+         {% endif %}
 
-        <p><strong>권한 :</strong>
-           {{ session.get('role') }}
-        </p>
+            <table class="table table-bordered">
 
-    </div>
+                <tr>
+                    <th style="width:150px;">아이디</th>
+                    <td>{{ user.uid }}</td>
+                </tr>
 
-    <div class="mypage-menu">
+                <tr>
+                    <th>이름</th>
+                    <td>{{ user.name }}</td>
+                </tr>
 
-        <a href="#" class="btn btn-outline-primary">
-           회원정보 수정
-        </a>
+                <tr>
+                    <th>권한</th>
+                    <td>{{ user.role }}</td>
+                </tr>
 
-        <a href="#" class="btn btn-outline-secondary">
-           비밀번호 변경
-        </a>
+                <tr>
+                    <th>가입일</th>
+                    <td>{{ user.created_at }}</td>
+                </tr>
 
-        <a href="/score" class="btn btn-outline-success">
-           내 성적 조회
-        </a>
+            </table>
 
-        <a href="/lecture" class="btn btn-outline-dark">
-           내 강의 목록
-        </a>
+            <div class="mypage-menu">
+       
+               <a href="#"
+                  class="btn my-btn my-btn-red">
+                   회원 탈퇴
+               </a>
+           
+               <a href="#"
+                  class="btn my-btn my-btn-green">
+                   수강 목록
+               </a>
+
+               <a href="/edit_profile"
+                  class="btn my-btn my-btn-yellow">
+                   정보 수정
+               </a>
+           
+           </div>
+
+        </div>
 
     </div>
 

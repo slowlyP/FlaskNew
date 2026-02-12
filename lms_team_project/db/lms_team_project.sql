@@ -1,7 +1,16 @@
+
+CREATE DATABASE lms_team_project
+DEFAULT CHARACTER SET utf8mb4
+COLLATE utf8mb4_general_ci;
+
+SELECT id, profile_image
+FROM members;
+
 use lms_team_project;
 
-
-
+SELECT user, host
+FROM mysql.user;
+show grants for 'song'@'%';
 # members 테이블 생성
 create table members(
 id int auto_increment primary key,
@@ -264,6 +273,16 @@ FROM scores s
 JOIN members m
 ON s.student_id = m.id
 LIMIT 10;
+
+# 파일명 저장
+ALTER TABLE members
+ADD profile_image VARCHAR(255);
+
+
+
+
+
+
 
 # 인덱스 생성
 

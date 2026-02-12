@@ -20,13 +20,17 @@
 <!-- ================= HEADER ================= -->
 <header class="header">
 
+    <!-- 로고 -->
     <div class="logo">
-        LMS SYSTEM
+        <a href="/" style="color:white; text-decoration:none;">
+            LMS SYSTEM
+        </a>
     </div>
 
+    <!-- 우측 메뉴 -->
     <div class="user-menu">
 
-        {% if session.get('user_name') %}
+        {% if session.get('user_id') %}
     
             <!-- 로그인 상태 -->
     
@@ -43,6 +47,16 @@
                class="btn btn-danger btn-sm">
                 로그아웃
             </a>
+
+            <!-- 관리자 전용 -->
+            {% if session.get('role') == 'admin' %}
+    
+                <a href="/admin/members"
+                   class="btn btn-warning btn-sm">
+                    회원관리
+                </a>
+    
+            {% endif %}
     
         {% else %}
     
@@ -53,7 +67,7 @@
                 로그인
             </a>
     
-            <a href="/join"
+            <a href="/signup"
                class="btn btn-outline-light btn-sm">
                 회원가입
             </a>
@@ -61,7 +75,6 @@
         {% endif %}
     
     </div>
-    
 
 </header>
 
