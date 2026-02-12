@@ -37,5 +37,9 @@ body{
 .content{
     padding:0;   /* Hero 전체화면 */
     background-color: rgb(0, 0, 0);
+
+    min-height: calc(100vh - 80px);
+    padding:40px;
 }
+
 

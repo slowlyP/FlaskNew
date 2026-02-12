@@ -1,5 +1,8 @@
 .mypage-container{
     padding:40px;
+    max-width:900px;
+    margin:0 auto;
+    color:#000;
 }
 
 .mypage-box{
@@ -7,9 +10,14 @@
     padding:30px;
     border-radius:12px;
     margin-bottom:20px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.2);
 }
 
 .mypage-menu{
     display:flex;
     gap:10px;
+}
+
+.mypage-container h2{
+    color:#fff;
 }

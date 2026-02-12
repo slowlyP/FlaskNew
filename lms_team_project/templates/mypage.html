@@ -1,5 +1,10 @@
 {% extends "layout.html" %}
 
+{% block css %}
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/mypage.css') }}">
+{% endblock %}
+
 {% block content %}
 
 <div class="mypage-container">
@@ -24,23 +29,19 @@
 
     <div class="mypage-menu">
 
-        <a href="#"
-           class="btn btn-outline-primary">
+        <a href="#" class="btn btn-outline-primary">
            회원정보 수정
         </a>
 
-        <a href="#"
-           class="btn btn-outline-secondary">
+        <a href="#" class="btn btn-outline-secondary">
            비밀번호 변경
         </a>
 
-        <a href="/score"
-           class="btn btn-outline-success">
+        <a href="/score" class="btn btn-outline-success">
            내 성적 조회
         </a>
 
-        <a href="/lecture"
-           class="btn btn-outline-dark">
+        <a href="/lecture" class="btn btn-outline-dark">
            내 강의 목록
         </a>
 
