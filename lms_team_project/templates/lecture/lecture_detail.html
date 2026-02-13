@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="card shadow">
+
+        <div class="card-body">
+
+            <h3>{{ lecture.title }}</h3>
+
+            <hr>
+
+            <p><b>강사</b> : {{ lecture.teacher_name }}</p>
+
+            <p><b>정원</b> : {{ lecture.capacity }}</p>
+
+            <p><b>강의기간</b> :
+               {{ lecture.start_date }} ~
+               {{ lecture.end_date }}
+            </p>
+
+            <p><b>설명</b></p>
+            <p>{{ lecture.description }}</p>
+
+            <a href="/enroll/{{ lecture.id }}"
+               class="btn btn-success">
+               수강신청
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

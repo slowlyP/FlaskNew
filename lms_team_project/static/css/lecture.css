@@ -1,0 +1,40 @@
+/* 다크 카드 */
+.lecture-card{
+    border-radius:16px;
+    overflow:hidden;
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,0.1);
+    box-shadow:0 8px 24px rgba(0,0,0,0.4);
+    transition:0.3s;
+}
+
+.lecture-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 16px 32px rgba(0,0,0,0.6);
+}
+
+/* 헤더 */
+.lecture-header{
+    background:linear-gradient(135deg,#0f2027,#2c5364);
+    color:#fff;
+    padding:14px;
+    font-weight:bold;
+}
+
+/* 바디 */
+.lecture-body{
+    padding:16px;
+    color:#ddd;
+}
+
+/* 버튼 */
+.lecture-body .btn{
+    border-color:#00c6ff;
+    color:#00c6ff;
+}
+
+.lecture-body .btn:hover{
+    background:#00c6ff;
+    color:#000;
+}

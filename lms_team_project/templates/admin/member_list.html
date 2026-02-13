@@ -1,0 +1,89 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <h2 class="mb-4">회원 관리</h2>
+
+    <div class="card shadow">
+
+        <div class="card-body">
+
+            <table class="table table-bordered table-hover">
+
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>아이디</th>
+                        <th>이름</th>
+                        <th>권한</th>
+                        <th>상태</th>
+                        <th>가입일</th>
+                        <th>관리</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for m in members %}
+                    <tr>
+
+                        <td>{{ m.id }}</td>
+                        <td>{{ m.uid }}</td>
+                        <td>{{ m.name }}</td>
+                        <td>{{ m.role }}</td>
+
+                        <td>
+                            {% if m.active == 1 %}
+                                <span class="badge bg-success">
+                                    정상
+                                </span>
+                            {% else %}
+                                <span class="badge bg-danger">
+                                    정지
+                                </span>
+                            {% endif %}
+                        </td>
+
+                        <td>{{ m.created_at }}</td>
+                        <td>
+
+                            {% if m.active == 1 %}
+                        
+                                <a href="/admin/member/toggle/{{ m.id }}"
+                                   class="btn btn-danger btn-sm">
+                                   정지
+                                </a>
+                        
+                            {% else %}
+                        
+                                <a href="/admin/member/toggle/{{ m.id }}"
+                                   class="btn btn-success btn-sm">
+                                   해제
+                                </a>
+                        
+                            {% endif %}
+                                <!-- 삭제 -->
+                                <a href="/admin/member/delete/{{ m.id }}"
+                                    class="btn btn-dark btn-sm"
+                                    onclick="return confirm('정말 삭제하시겠습니까?');">
+                                    삭제
+                            </a>
+                        
+                        </td>
+
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

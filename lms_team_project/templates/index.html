@@ -2,22 +2,92 @@
 
 {% block css %}
 <link rel="stylesheet"
-href="{{ url_for('static', filename='css/home.css') }}">
+      href="{{ url_for('static',
+      filename='css/home.css') }}">
 {% endblock %}
 
 
 {% block content %}
 
+<!-- ================= HERO ================= -->
 <section class="hero">
 
-    <div class="hero-overlay">
+    <!-- 어두운 오버레이 -->
+    <div class="hero-overlay"></div>
+
+    <!-- 텍스트 -->
+    <div class="hero-content">
 
         <h1>LMS SYSTEM</h1>
         <p>Learning Management Platform</p>
 
-        <a href="/lecture" class="btn btn-primary btn-lg">
-            강의 시작하기
-        </a>
+        <div class="hero-buttons">
+
+
+        
+            {% if not session.get('user_id') %}
+        
+            <!-- 로그인 안했을 때만 -->
+            <a href="/signup"
+               class="btn btn-outline-light btn-lg">
+               회원가입
+            </a>
+        
+            {% endif %}
+        
+        </div>
+        
+
+    </div>
+
+</section>
+
+
+<!-- ================= 기능 카드 ================= -->
+<section class="feature-section">
+
+    <div class="container">
+
+        <div class="row g-4">
+
+            <div class="col-md-3">
+
+                <a href="/lecture" class="feature-link">
+                    <div class="feature-card">
+                        <i class="bi bi-play-circle"></i>
+                        <h5>강의</h5>
+                        <p>온라인 강의 학습</p>
+                    </div>
+
+                </a>
+
+            </div>
+
+            <div class="col-md-3">
+                <div class="feature-card">
+                    <i class="bi bi-chat-dots"></i>
+                    <h5>게시판</h5>
+                    <p>자유로운 소통</p>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="feature-card">
+                    <i class="bi bi-graph-up"></i>
+                    <h5>성적</h5>
+                    <p>학습 성과 확인</p>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="feature-card">
+                    <i class="bi bi-person-check"></i>
+                    <h5>수강신청</h5>
+                    <p>강의 신청 관리</p>
+                </div>
+            </div>
+
+        </div>
 
     </div>
 

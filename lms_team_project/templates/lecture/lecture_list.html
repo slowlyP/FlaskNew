@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block css %}
+<link rel="stylesheet"
+      href="{{ url_for('static',
+      filename='css/lecture.css') }}">
+{% endblock %}
+
+{% block content %}
+
+
+<div class="container mt-5">
+
+    <h2 class="mb-4">📚 강의 목록</h2>
+
+    <div class="row g-4">
+
+        {% for lec in lectures %}
+
+        <div class="col-md-4">
+
+            <div class="lecture-card">
+
+                <!-- 카드 헤더 -->
+                <div class="lecture-header">
+                    📘 {{ lec.title }}
+                </div>
+            
+                <!-- 카드 바디 -->
+                <div class="lecture-body">
+            
+                    <p>👨‍🏫 강사 : {{ lec.teacher_name }}</p>
+            
+                    <p>
+                        👥 정원 :
+                        <span class="badge bg-primary">
+                            {{ lec.capacity }}
+                        </span>
+                    </p>
+            
+                    <a href="/lecture/{{ lec.id }}"
+                       class="btn btn-outline-primary btn-sm w-100">
+                       상세보기 →
+                    </a>
+            
+                </div>
+            
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

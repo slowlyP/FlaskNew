@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h3>📚 내 수강 목록</h3>
+
+    <table class="table table-bordered mt-3">
+
+        <thead class="table-dark">
+            <tr>
+                <th>강의명</th>
+                <th>강사</th>
+                <th>정원</th>
+                <th>기간</th>
+                <th>관리</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+        {% if lectures %}
+            {% for lec in lectures %}
+            <tr>
+                <td>{{ lec.title }}</td>
+                <td>{{ lec.teacher_name }}</td>
+                <td>{{ lec.capacity }}</td>
+                <td>
+                    {{ lec.start_date }} ~ {{ lec.end_date }}
+                </td>
+                <td>
+
+                    <!-- 상세보기 -->
+                    <a href="/lecture/{{ lec.id }}"
+                       class="btn btn-sm btn-primary">
+                       상세보기
+                    </a>
+                
+                    <!-- 수강취소 -->
+                    <a href="/cancel_enroll/{{ lec.id }}"
+                       class="btn btn-sm btn-danger"
+                       onclick="return confirm('수강취소 하시겠습니까?');">
+                       수강취소
+                    </a>
+                
+                </td>
+                
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="5" class="text-center">
+                    신청한 강의가 없습니다.
+                </td>
+            </tr>
+        {% endif %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}

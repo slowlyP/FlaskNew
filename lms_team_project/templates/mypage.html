@@ -24,12 +24,10 @@ href="{{ url_for('static', filename='css/mypage.css') }}">
             <!-- 프로필 이미지 -->
          {% if user.profile_image %}
          <img src="/static/uploads/{{ user.profile_image }}"
-            width="120"
-            class="rounded-circle mb-3">
+            class="profile-img mb-3">
          {% else %}
          <img src="/static/img/default.png"
-            width="120"
-            class="rounded-circle mb-3">
+            class="profile-img mb-3">
          {% endif %}
 
             <table class="table table-bordered">
@@ -58,12 +56,13 @@ href="{{ url_for('static', filename='css/mypage.css') }}">
 
             <div class="mypage-menu">
        
-               <a href="#"
-                  class="btn my-btn my-btn-red">
+               <a href="/member/delete"
+                  class="btn my-btn my-btn-red"
+                  onclick="return confirm('정말 탈퇴하시겠습니까?');">
                    회원 탈퇴
                </a>
            
-               <a href="#"
+               <a href="/my_lectures" class="btn btn-dark"
                   class="btn my-btn my-btn-green">
                    수강 목록
                </a>

@@ -5,6 +5,9 @@
     display:flex;
     justify-content:space-between;
     align-items:center;
+
+    position:relative;   /* 추가 */
+    z-index:1000; 
 }
 
 /* 로고 */
@@ -26,3 +29,99 @@
     color:#fff;
     margin-right:10px;
 }
+
+/* =========================
+   헤더 미니 프로필
+========================= */
+.header-profile{
+
+    width:35px;
+    height:35px;
+
+    border-radius:50%;
+
+    object-fit:cover;   /* 핵심 */
+
+    border:2px solid #fff;
+
+}
+
+/* 앱 메뉴 영역 */
+.app-menu{
+    position:relative;
+}
+
+/* 2×2 아이콘 */
+.app-icon{
+    font-size:22px;
+    color:#fff;
+    cursor:pointer;
+}
+
+/* 드롭다운 박스 */
+.app-dropdown{
+
+    position:absolute;
+    top:45px;
+    right:0;
+
+    width:200px;
+    padding:15px;
+
+    background:#fff;
+    border-radius:12px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,0.2);
+
+    display:none;   /* 기본 숨김 */
+
+    z-index:2000;
+
+}
+
+/* 메뉴 아이템 */
+.app-dropdown a{
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    padding:10px;
+    border-radius:8px;
+
+    text-decoration:none;
+    color:#333;
+}
+
+/* hover 효과 */
+.app-dropdown a:hover{
+    background:#f1f1f1;
+}
+
+.content{
+    min-height:100vh;
+
+    background-image:url("/static/img/bg1.jpg");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+}
+
+.content{
+    position:relative;
+    min-height:100vh;
+}
+
+.content::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.6); /* 어둡게 */
+    z-index:0;
+}
+
+.content > *{
+    position:relative;
+    z-index:1;
+}
+
