@@ -1,0 +1,424 @@
+/* =========================
+   게시판 전체 박스
+========================= */
+
+.board-wrapper{
+    background:rgba(0,0,0,0.85);
+    padding:40px;
+    border-radius:15px;
+    width:70%;
+    margin:40px auto;
+    color:#fff;
+}
+
+
+/* =========================
+   글쓰기 버튼
+========================= */
+
+.write-btn{
+    background:#00eaff;
+    color:#000;
+    padding:8px 18px;
+    border-radius:6px;
+    text-decoration:none;
+}
+
+
+/* =========================
+   테이블
+========================= */
+
+.board-table{
+    width:100%;
+    margin-top:20px;
+    border-collapse:collapse;
+}
+
+.board-table th{
+    background:#111;
+    color:#00eaff;
+    padding:12px;
+}
+
+.board-table td{
+    padding:12px;
+    border-bottom:1px solid #333;
+}
+
+.board-table a{
+    color:#fff;
+    text-decoration:none;
+}
+
+.board-table tr:hover{
+    background:#1a1a1a;
+}
+
+
+/* =========================
+   페이징
+========================= */
+
+.pagination{
+    margin-top:20px;
+}
+
+.pagination a{
+    margin:0 5px;
+    color:#fff;
+}
+
+.pagination .active{
+    color:#00eaff;
+    font-weight:bold;
+}
+
+
+/* =========================
+   하단 영역
+========================= */
+
+.board-bottom{
+    position:relative;
+    margin-top:30px;
+    padding-top:15px;
+    border-top:1px solid #333;
+}
+
+
+/* 검색 중앙 */
+
+.search-box{
+    text-align:center;
+}
+
+.search-box input{
+    padding:6px 12px;
+    border-radius:6px;
+    border:none;
+    width:220px;
+}
+
+
+/* 글쓰기 우측 */
+
+.write-box{
+    position:absolute;
+    right:0;
+    top:0;
+}
+
+/* =========================
+   글쓰기 폼
+========================= */
+
+.board-form{
+    margin-top:20px;
+}
+
+/* 제목 */
+.board-form input{
+    width:100%;
+    padding:12px;
+    margin-bottom:15px;
+    border:none;
+    border-radius:8px;
+}
+
+/* 내용 */
+.board-form textarea{
+    width:100%;
+    height:300px;        /* 크게 */
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    resize:none;
+}
+
+/* 버튼 박스 */
+.form-btn-box{
+    text-align:right;
+    margin-top:15px;
+}
+
+
+
+/* =========================
+   글쓰기 버튼 라인
+========================= */
+
+.form-btn-line{
+    display:flex;
+    justify-content:space-between;  /* 좌우 정렬 */
+    align-items:center;
+    margin-top:20px;
+}
+
+
+/* 목록 버튼 */
+
+.btn-list{
+    background:#555;
+    color:#fff;
+    padding:8px 18px;
+    border-radius:8px;
+    text-decoration:none;
+}
+
+
+/* 등록 버튼 */
+
+.form-btn-line button{
+    background:#00eaff;
+    color:#000;
+    padding:8px 18px;
+    border:none;
+    border-radius:8px;
+}
+
+/* =========================
+   상세보기
+========================= */
+
+.detail-title{
+    font-size:24px;
+    margin-bottom:10px;
+}
+
+.meta{
+    opacity:0.7;
+    margin-bottom:20px;
+    font-size:14px;
+}
+
+.content-box{
+    background:#111;
+    padding:25px;
+    border-radius:10px;
+    line-height:1.7;
+    min-height:200px;
+
+}
+
+.comment-form{
+    margin-top:15px;
+    max-width:100%;
+}
+
+.comment-input-box{
+    display:flex;
+    gap:10px;
+}
+
+.comment-input-box textarea{
+    flex:1;
+    height:80px;
+    padding:10px;
+    border:none;
+    border-radius:8px;
+    resize:none;
+}
+
+.comment-input-box button{
+    height:40px;
+    padding:0 16px;
+    background:#00eaff;
+    border:none;
+    border-radius:8px;
+}
+
+/* =========================
+   댓글 리스트
+========================= */
+
+.comment-list{
+    margin-top:20px;
+}
+
+/* 댓글 카드 */
+.comment-card{
+
+    background:#111;
+    padding:15px 18px;
+    margin-bottom:12px;
+
+    border-radius:10px;
+    border:1px solid #2a2a2a;
+
+}
+
+/* 상단 메타 */
+.comment-meta{
+
+    display:flex;
+    justify-content:space-between;
+
+    font-size:13px;
+    color:#aaa;
+
+    margin-bottom:8px;
+}
+
+/* 작성자 */
+.comment-meta .writer{
+    color:#00eaff;
+    font-weight:500;
+}
+
+/* 댓글 내용 */
+.comment-content{
+
+    color:#fff;
+    line-height:1.6;
+
+    white-space:pre-wrap; /* 엔터 유지 */
+}
+
+/* =========================
+   댓글 리스트 - 커뮤니티형
+========================= */
+
+/* 댓글 1개 */
+.comment-item{
+    padding:18px 15px;
+    border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+/* hover 효과 */
+.comment-item:hover{
+    background:rgba(255,255,255,0.03);
+}
+
+/* 상단 라인 */
+.comment-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:8px;
+}
+
+/* 작성자 */
+.comment-writer{
+    color:#00eaff;
+    font-weight:600;
+    font-size:14px;
+}
+
+/* 날짜 */
+.comment-date{
+    font-size:12px;
+    opacity:0.6;
+}
+
+/* 댓글 내용 */
+.comment-content{
+    font-size:14px;
+    line-height:1.6;
+    white-space:pre-wrap;
+}
+
+/* 댓글 상단 */
+.comment-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:8px;
+}
+
+/* 우측 묶음 */
+.comment-right{
+    display:flex;
+    gap:10px;
+    align-items:center;
+}
+
+/* 삭제 버튼 */
+.comment-delete{
+    color:#ff6b6b;
+    font-size:13px;
+    text-decoration:none;
+}
+
+.comment-delete:hover{
+    text-decoration:underline;
+}
+
+/* =========================
+   댓글 수정 / 삭제 버튼
+========================= */
+
+.comment-edit,
+.comment-delete{
+    padding:4px 10px;
+    border-radius:6px;
+    font-size:12px;
+    text-decoration:none;
+    margin-left:6px;
+}
+
+/* 수정 */
+.comment-edit{
+    background:#3498db;
+    color:#fff;
+}
+
+/* 삭제 */
+.comment-delete{
+    background:#e74c3c;
+    color:#fff;
+}
+
+/* hover */
+.comment-edit:hover{
+    background:#2980b9;
+}
+
+.comment-delete:hover{
+    background:#c0392b;
+}
+
+/* =========================
+   댓글 수정 화면
+========================= */
+
+.comment-edit-form textarea{
+    width:100%;
+    height:150px;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    resize:none;
+    margin-top:15px;
+}
+
+/* 버튼 라인 */
+.form-btn-line{
+    display:flex;
+    justify-content:space-between;
+    margin-top:15px;
+}
+
+/* 취소 버튼 */
+.btn-list{
+    background:#555;
+    color:#fff;
+    padding:8px 16px;
+    border-radius:6px;
+    text-decoration:none;
+}
+
+/* 댓글 좋아요 */
+.comment-like{
+    margin-left:10px;
+    color:#aaa;
+    text-decoration:none;
+    font-size:14px;
+}
+
+/* 내가 누른 상태 */
+.comment-like.liked{
+    color:#00e0ff;
+    font-weight:bold;
+}
+

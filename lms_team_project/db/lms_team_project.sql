@@ -6,6 +6,10 @@ COLLATE utf8mb4_general_ci;
 SELECT id, profile_image
 FROM members;
 
+
+select * from members;
+
+
 use lms_team_project;
 
 SELECT user, host

@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="card shadow">
+
+        <div class="card-body">
+
+            <h3>강의 수정</h3>
+            <hr>
+
+            <form method="post"
+                  enctype="multipart/form-data">
+
+                <!-- 강의명 -->
+                <div class="mb-3">
+                    <label>강의명</label>
+                    <input type="text"
+                           name="title"
+                           class="form-control"
+                           value="{{ lecture.title }}">
+                </div>
+
+                <!-- 강사명 -->
+                <div class="mb-3">
+                    <label>강사명</label>
+                    <input type="text"
+                           name="teacher"
+                           class="form-control"
+                           value="{{ lecture.teacher_name }}">
+                </div>
+
+                <!-- 정원 -->
+                <div class="mb-3">
+                    <label>정원</label>
+                    <input type="number"
+                           name="capacity"
+                           class="form-control"
+                           value="{{ lecture.capacity }}">
+                </div>
+
+                <!-- 현재 이미지 -->
+                <div class="mb-3">
+                    <label>현재 강사 이미지</label><br>
+
+                    {% if lecture.teacher_image %}
+                        <img src="/static/uploads/{{ lecture.teacher_image }}"
+                             width="120">
+                    {% else %}
+                        <i class="bi bi-person-circle"
+                           style="font-size:80px;"></i>
+                    {% endif %}
+                </div>
+
+                <!-- 새 이미지 업로드 -->
+                <div class="mb-3">
+                    <label>이미지 변경</label>
+                    <input type="file"
+                           name="teacher_image"
+                           class="form-control">
+                </div>
+
+                <button class="btn btn-primary">
+                    수정 완료
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

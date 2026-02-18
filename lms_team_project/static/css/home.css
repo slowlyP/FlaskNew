@@ -3,7 +3,7 @@
 .hero{
     position:relative;
     height:90vh;
-    background:url("/static/img/bg1.jpg") center/cover no-repeat;
+    background:none;
 }
 
 /* 어두운 오버레이 */

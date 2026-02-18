@@ -1,0 +1,166 @@
+{% extends "layout.html" %}
+
+{% block css %}
+<link rel="stylesheet"
+      href="{{ url_for('static',
+      filename='css/board.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="board-wrapper">
+
+    <!-- =========================
+         제목
+    ========================== -->
+    <h2 class="detail-title">
+        {{ board.title }}
+    </h2>
+
+
+    <!-- =========================
+         메타 정보
+    ========================== -->
+    <div class="meta">
+        작성자 {{ board.member_id }}
+        · 조회수 {{ board.views }}
+        · {{ board.created_at }}
+    </div>
+
+
+    <!-- =========================
+         내용
+    ========================== -->
+    <div class="content-box">
+        {{ board.content | replace('\n','<br>') | safe }}
+    </div>
+
+
+
+    <!-- =========================
+         댓글 영역
+    ========================== -->
+    <h4 style="margin-top:30px;">댓글</h4>
+
+
+    <!-- 댓글 입력 폼 -->
+    <form method="post"
+          action="/boards/detail/{{ board.id }}"
+          class="comment-form">
+
+        <div class="comment-input-box">
+
+            <textarea name="content"
+                      placeholder="댓글 입력"
+                      required></textarea>
+
+            <button type="submit">
+                등록
+            </button>
+
+        </div>
+
+    </form>
+
+
+
+<!-- =========================
+     댓글 목록 출력
+========================= -->
+<div class="comment-list">
+
+    {% for c in comments %}
+    
+    <div class="comment-item">
+    
+        <!-- 상단 -->
+        <div class="comment-top">
+    
+            <span class="comment-writer">
+                👤 {{ c.member_id }}
+            </span>
+    
+            <div class="comment-right">
+
+                <!-- 날짜 -->
+                <span class="comment-date">
+                    {{ c.created_at }}
+                </span>
+            
+                <!-- 👍 좋아요 -->
+                <a href="/boards/comment_like/{{ c.id }}"
+                   class="comment-like
+                   {% if c.id in my_like_ids %}
+                   liked
+                   {% endif %}">
+            
+                   👍 {{ c.like_count }}
+            
+                </a>
+            
+                <!-- 작성자만 -->
+                {% if session.user_id == c.member_id %}
+            
+                <a href="javascript:void(0);"
+                   class="comment-edit"
+                   onclick="editComment({{ c.id }})">
+                   수정
+                </a>
+            
+                <a href="/boards/comment_delete/{{ c.id }}"
+                   class="comment-delete">
+                   삭제
+                </a>
+            
+                {% endif %}
+            
+            </div>
+            
+    
+        </div>
+    
+    
+    
+        <!-- 내용 -->
+        <div class="comment-content"
+             id="content-{{ c.id }}">
+    
+            {{ c.content | replace('\n','<br>') | safe }}
+    
+        </div>
+    
+    
+    
+        <!-- 수정폼 -->
+        <form method="post"
+              action="/boards/comment_edit/{{ c.id }}"
+              class="comment-edit-form"
+              id="edit-form-{{ c.id }}"
+              style="display:none;">
+    
+            <textarea name="content">{{ c.content }}</textarea>
+    
+            <div class="form-btn-line">
+    
+                <button type="submit">저장</button>
+    
+                <button type="button"
+                        onclick="cancelEdit({{ c.id }})">
+                    취소
+                </button>
+    
+            </div>
+    
+        </form>
+    
+    </div>
+    
+    {% endfor %}
+    
+    </div>
+
+    <script src="{{ url_for('static',
+    filename='js/comment.js') }}"></script>
+    {% endblock %}
+    
+

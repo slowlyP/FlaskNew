@@ -1,3 +1,20 @@
+/* ===== 전체 배경 ===== */
+body{
+    margin:0;
+    padding:0;
+
+    background:
+        linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+        url("/static/img/bg1.jpg");
+
+    background-size:cover;
+    background-position:center 80%;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+}
+
+
+
 /* 헤더 */
 .header{
     background:#111;
@@ -98,30 +115,42 @@
     background:#f1f1f1;
 }
 
-.content{
-    min-height:100vh;
 
-    background-image:url("/static/img/bg1.jpg");
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
-}
 
-.content{
-    position:relative;
-    min-height:100vh;
-}
 
-.content::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:rgba(0,0,0,0.6); /* 어둡게 */
-    z-index:0;
-}
 
 .content > *{
     position:relative;
     z-index:1;
+}
+
+/* =========================
+   공통 카드 UI
+========================= */
+
+.page-title{
+    color:#fff;
+    margin-bottom:20px;
+}
+
+/* 카드 박스 */
+.custom-card{
+    background:#f8f9fa;
+    border-radius:12px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.4);
+    overflow:hidden;
+}
+
+/* 카드 헤더 */
+.custom-card .card-header{
+    background:#2b2f33;
+    color:#fff;
+    font-weight:500;
+    padding:12px 16px;
+}
+
+/* 카드 바디 */
+.custom-card .card-body{
+    padding:20px;
 }
 

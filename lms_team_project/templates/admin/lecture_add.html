@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="container mt-5">
+
+    <h2 class="page-title">강의 등록</h2>
+
+    <div class="card custom-card">
+
+        <div class="card-header">
+            강의 정보 입력
+        </div>
+
+        <div class="card-body">
+
+            <form method="post" enctype="multipart/form-data">
+
+
+                <div class="mb-3">
+                    <label>강의명</label>
+                    <input type="text" name="title" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label>강사명</label>
+                    <input type="text" name="teacher" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label>강사 사진</label>
+                    <input type="file" name="teacher_image" class="form-control">
+                </div>
+                
+
+                <div class="mb-3">
+                    <label>정원</label>
+                    <input type="number" name="capacity" class="form-control" required>
+                </div>
+
+                <button class="btn btn-dark">등록</button>
+                <a href="/lecture" class="btn btn-secondary">취소</a>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

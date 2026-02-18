@@ -1,12 +1,18 @@
 {% extends "layout.html" %}
 
+{% block css %}
+<link rel="stylesheet"
+      href="{{ url_for('static',
+      filename='css/lecture.css') }}">
+{% endblock %}
+
 {% block content %}
 
 <div class="container mt-5">
 
     <div class="card shadow">
 
-        <div class="card-body">
+        <div class="card-body position-relative">
 
             <h3>{{ lecture.title }}</h3>
 
@@ -24,10 +30,58 @@
             <p><b>설명</b></p>
             <p>{{ lecture.description }}</p>
 
+
+            <!-- 수강신청 -->
+            {% if session.get('role') != 'admin' %}
+
             <a href="/enroll/{{ lecture.id }}"
-               class="btn btn-success">
+               class="btn btn-primary">
                수강신청
             </a>
+
+            {% endif %}
+
+            {% if session.get('role') == 'admin' %}
+
+            <a href="/admin/lecture/edit/{{ lecture.id }}"
+            class="btn btn-warning mt-3">
+
+            강의 수정
+
+            </a>
+
+            {% endif %}
+
+
+            {% if session.get('role') == 'admin' %}
+
+            <a href="/admin/lecture/delete/{{ lecture.id }}"
+                class="btn btn-danger mt-3"
+                onclick="return confirm('삭제하시겠습니까?')">
+
+                강의 삭제
+
+            </a>
+
+            {% endif %}
+
+
+
+            <!-- 강사 프로필 -->
+            <div class="teacher-profile-box">
+
+                {% if lecture.teacher_image %}
+
+                    <img src="/static/uploads/{{ lecture.teacher_image }}">
+
+                {% else %}
+
+                    <i class="bi bi-person-circle teacher-profile-icon"></i>
+
+                {% endif %}
+
+            </div>
+
 
         </div>
 

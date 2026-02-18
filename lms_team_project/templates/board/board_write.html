@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block css %}
+<link rel="stylesheet"
+      href="{{ url_for('static',
+      filename='css/board.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="board-wrapper">
+
+    <h2>✏ 게시글 작성</h2>
+
+    <form method="post"
+          action="/boards/write"
+          class="board-form">
+
+        <!-- 제목 -->
+        <input type="text"
+               name="title"
+               placeholder="제목 입력"
+               required>
+
+        <!-- 내용 -->
+        <textarea name="content"
+                  placeholder="내용 입력"
+                  required></textarea>
+
+
+        <!-- 버튼 라인 -->
+        <div class="form-btn-line">
+
+            <!-- 목록 -->
+            <a href="/boards/"
+               class="btn-list">
+               목록
+            </a>
+
+            <!-- 등록 -->
+            <button type="submit">
+                등록하기
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

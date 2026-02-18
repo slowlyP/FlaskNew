@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block css %}
+<link rel="stylesheet"
+      href="{{ url_for('static',
+      filename='css/board.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="board-wrapper">
+
+    <h2 class="detail-title">
+        ✏ 댓글 수정
+    </h2>
+
+    <form method="post"
+          action="/boards/comment_edit/{{ comment.id }}"
+          class="comment-edit-form">
+
+        <!-- textarea -->
+        <textarea name="content"
+                  required>{{ comment.content }}</textarea>
+
+        <!-- 버튼 라인 -->
+        <div class="form-btn-line">
+
+            <a href="/boards/detail/{{ comment.board_id }}"
+               class="btn-list">
+               취소
+            </a>
+
+            <button type="submit">
+                수정 완료
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

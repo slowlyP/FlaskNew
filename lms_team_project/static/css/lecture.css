@@ -38,3 +38,160 @@
     background:#00c6ff;
     color:#000;
 }
+
+/* 다크 카드 */
+.lecture-card{
+    border-radius:16px;
+    overflow:hidden;
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,0.1);
+    box-shadow:0 8px 24px rgba(0,0,0,0.4);
+    transition:0.3s;
+}
+
+.lecture-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 16px 32px rgba(0,0,0,0.6);
+}
+
+/* 헤더 */
+.lecture-header{
+    background:linear-gradient(135deg,#0f2027,#2c5364);
+    color:#fff;
+    padding:14px;
+    font-weight:bold;
+}
+
+/* 바디 */
+.lecture-body{
+    padding:16px;
+    color:#ddd;
+}
+
+/* 버튼 */
+.lecture-body .btn{
+    border-color:#00c6ff;
+    color:#00c6ff;
+}
+
+/* =========================
+   강의목록 제목
+========================= */
+.lecture-title{
+    color:#ffffff !important;
+    font-size:28px;
+    font-weight:700;
+    text-shadow:0 4px 12px rgba(0,0,0,1);
+}
+
+/* 강의 추가 버튼 */
+.add-lecture-btn{
+    display:inline-block;
+    padding:14px 26px;
+    font-size:18px;
+    font-weight:bold;
+
+    border-radius:50px;
+    text-decoration:none;
+
+    background:linear-gradient(135deg,#44859754,#2174c2);
+    color:#fff;
+
+    box-shadow:0 8px 20px rgba(0,0,0,0.4);
+    transition:0.3s;
+}
+
+.add-lecture-btn:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 24px rgba(0,0,0,0.6);
+}
+
+/* 관리자 강의 추가 플로팅 버튼 */
+.floating-add-btn{
+
+    position:fixed;
+    bottom:40px;
+    right:40px;
+
+    width:60px;
+    height:60px;
+
+    background:#0d6efd;
+    color:#fff;
+
+    border-radius:50%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:28px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,0.4);
+
+    transition:0.3s;
+
+    text-decoration:none;
+}
+
+.floating-add-btn:hover{
+    background:#0b5ed7;
+    transform:scale(1.1);
+}
+
+
+
+.teacher-profile-box{
+
+    position:absolute;
+
+    right:40px;
+    bottom:30px;
+
+    width:140px;
+    height:140px;
+
+    overflow:hidden;
+}
+
+.teacher-profile-box img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    border-radius:12px;
+}
+
+/* =========================
+   기본 프로필 아이콘
+========================= */
+
+.teacher-profile-icon{
+
+    font-size:120px;   /* 크기 */
+
+    color:#ccc;        /* 색상 */
+
+    width:100%;
+    height:100%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:rgba(255,255,255,0.05);
+
+    border-radius:12px;
+}
+
+
+
+
+
+
+
+
+
