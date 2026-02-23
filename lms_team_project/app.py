@@ -7,6 +7,7 @@ from routes.admin_routes import admin_bp
 from routes.lecture_routes import lecture_bp
 from routes.mypage_routes import mypage_bp
 from routes.board_routes import board_bp
+from routes.score_routes import score_bp
 
 
 app = Flask(__name__)
@@ -28,6 +29,7 @@ app.register_blueprint(admin_bp)
 app.register_blueprint(lecture_bp)
 app.register_blueprint(mypage_bp)
 app.register_blueprint(board_bp)
+app.register_blueprint(score_bp)
 
 
 if __name__ == "__main__":

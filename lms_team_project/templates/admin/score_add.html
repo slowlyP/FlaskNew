@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container mt-5">
+    <div class="score-container p-5" style="background: rgba(20,20,30,0.9); border-radius: 15px;">
+        <h2 class="text-white mb-4">✍️ 학생 성적 등록</h2>
+        <form action="/admin/score/add" method="POST">
+            <div class="mb-3">
+                <label class="text-info">학생 선택</label>
+                <select name="student_id" class="form-control bg-dark text-white border-info" required>
+                    <option value="">학생을 선택하세요</option>
+                    {% for m in members %}
+                    <option value="{{ m.id }}">{{ m.name }} (ID: {{ m.id }})</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label class="text-white">Python</label>
+                    <input type="number" name="python" class="form-control" min="0" max="100" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label class="text-white">Database</label>
+                    <input type="number" name="db" class="form-control" min="0" max="100" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label class="text-white">Frontend</label>
+                    <input type="number" name="frontend" class="form-control" min="0" max="100" required>
+                </div>
+            </div>
+            <div class="mt-4 text-center">
+                <button type="submit" class="btn btn-info px-5">성적 저장하기</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

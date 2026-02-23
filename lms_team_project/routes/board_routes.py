@@ -178,7 +178,7 @@ def board_detail(board_id):
             sql = """
             INSERT INTO board_comments
             (board_id, member_id, content, parent_id, depth)
-            VALUES (%s,%s,%s,0,0)
+            VALUES (%s,%s,%s,NULL,0)
             """
             cursor.execute(sql,(board_id,member_id,content))
             conn.commit()

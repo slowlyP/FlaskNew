@@ -1,0 +1,82 @@
+/* 성적 컨테이너 스타일 */
+.score-container {
+    background: rgba(20, 20, 30, 0.8);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 0 20px rgba(0, 234, 255, 0.1);
+    border: 1px solid rgba(0, 234, 255, 0.2);
+}
+
+/* 등급 서클 네온 효과 */
+.grade-circle {
+    width: 120px;
+    height: 120px;
+    line-height: 120px;
+    font-size: 3rem;
+    font-weight: bold;
+    color: #00eaff;
+    border: 4px solid #00eaff;
+    border-radius: 50%;
+    margin: 0 auto;
+    text-shadow: 0 0 10px rgba(0, 234, 255, 0.5);
+    box-shadow: 0 0 15px rgba(0, 234, 255, 0.2);
+}
+
+.grade-label {
+    margin-top: 15px;
+    font-size: 1.1rem;
+    color: #aaa;
+}
+
+/* 그래프 감싸는 박스 */
+.chart-wrapper {
+    width: 100%;
+    max-width: 320px;
+    margin: 30px auto 0;
+    padding: 10px;
+}
+
+/* 테이블 커스텀 */
+/* 테이블 전체 글씨 색상 변경 */
+.score-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    color: #ffffff; /* 기본 글씨색을 흰색으로 강제 지정 */
+}
+
+/* 과목명 (좌측 열) 글씨 스타일 */
+.score-table td:first-child {
+    color: #e0e0e0; /* 약간 밝은 회색 */
+    font-weight: 500;
+}
+
+/* 점수 숫자 (우측 열) 글씨 스타일 */
+.score-table td:last-child {
+    color: #00eaff; /* 네온 민트색으로 포인트 */
+    font-weight: bold;
+    text-align: right;
+}
+
+/* 테이블 각 행의 배경색이 너무 어둡다면 조금 더 밝게 조정 */
+.score-table td {
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1); /* 투명도를 0.05에서 0.1로 살짝 올림 */
+    border-bottom: 1px solid rgba(0, 234, 255, 0.1);
+}
+
+/* 상단 제목 (학습 성과) 글씨색 */
+.score-container h2 {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(0, 234, 255, 0.3);
+}
+.avg-row td {
+    background: rgba(0, 234, 255, 0.15) !important;
+    color: #fff;
+    font-size: 1.1rem;
+}
+
+.score-num {
+    color: #00eaff;
+    font-weight: bold;
+}

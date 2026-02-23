@@ -284,7 +284,18 @@ ADD profile_image VARCHAR(255);
 
 
 
+USE lms_team_project;
 
+-- 좋아요 테이블 추가 (현재 SQL문에 누락된 부분)
+CREATE TABLE comment_likes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    comment_id INT NOT NULL,
+    member_id INT NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY unique_like (comment_id, member_id),
+    FOREIGN KEY (comment_id) REFERENCES board_comments(id) ON DELETE CASCADE,
+    FOREIGN KEY (member_id) REFERENCES members(id) ON DELETE CASCADE
+);
 
 
 

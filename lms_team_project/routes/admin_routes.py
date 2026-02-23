@@ -1,4 +1,3 @@
-
 from flask import Blueprint, render_template, request, session, redirect
 from db.db_conn import get_connection
 import os
@@ -244,4 +243,53 @@ def lecture_delete(lecture_id):
 
     return redirect("/lecture")
 
+# ======================================================================================score ==========================================================
 
+# 성적 입력 페이지 이동 및 저장
+
+@admin_bp.route("/score/add", methods=["GET", "POST"])
+def score_add():
+    # 관리자 체크
+    if session.get("role") != "admin":
+        return redirect("/")
+
+    conn = get_connection()
+
+    # GET : 성적 입력페이지
+    if request.method =="GET":
+        with conn.cursor() as cursor:
+            sql = "SELECT id, name FROM members WHERE role = 'user'"
+            cursor.execute(sql)
+            members= cursor.fetchall()
+        conn.close()
+        return render_template("admin/score_add.html", members=members)
+
+    # POST : 성적 데이터 insert
+    student_id = request.form.get("student_id")
+    python = int(request.form.get("python", 0))
+    db_score = int(request.form.get("db", 0))
+    frontend = int(request.form.get("frontend", 0))
+
+    # 계산 로직
+    total = python + db_score + frontend
+    avg = round(total /3,2)
+
+    if avg >=90:grade = 'A'
+    elif avg >=80:grade = 'B'
+    elif avg >=70:grade = 'C'
+    else: grade = 'F'
+
+    with conn.cursor() as cursor:
+        # update가 아닌 insert를 사용하여 성적 이력 쌓음
+        sql = """
+            INSERT INTO scores(student_id, python, db, frontend, total, avg, grade)
+            VALUES (%s,%s,%s,%s,%s,%s,%s)
+        """
+        cursor.execute(sql,(student_id, python,db_score,frontend,total,avg,grade))
+
+    conn.commit()
+    conn.close()
+
+    return redirect(f"/my_score?student_id={student_id}")
+
+        
