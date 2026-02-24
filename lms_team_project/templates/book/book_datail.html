@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-5 mb-4">
+            <div class="book-detail-img shadow-lg" style="border-radius: 15px; overflow: hidden; border: 1px solid rgba(0, 234, 255, 0.2);">
+                <img src="{{ url_for('static', filename='uploads/' + book.book_image) if book.book_image else 'https://via.placeholder.com/400x550' }}" 
+                     class="w-100" alt="교재 표지" style="object-fit: cover;">
+            </div>
+        </div>
+
+        <div class="col-md-7">
+            <div class="ps-md-4">
+                <h2 class="text-white mb-2">{{ book.title }}</h2>
+                <p class="text-info fs-5 mb-1">{{ book.author }} 저자</p> 
+                
+                <div class="price-section py-3 mb-4" style="border-top: 1px solid #333; border-bottom: 1px solid #333;">
+                    <h3 class="text-warning">{{ "{:,}".format(book.price) }}원</h3>
+                </div>
+
+                <div class="description-section mb-5 text-light opacity-75" style="line-height: 1.8;">
+                    <h5>교재 소개</h5>
+                    <p>{{ book.description | replace('\n', '<br>') | safe }}</p>
+                </div>
+
+                <form action="/book/cart/add/{{ book.id }}" method="POST">
+                    <div class="mb-4">
+                        <label class="text-white mb-2 small opacity-75">수량 선택</label>
+                        <div class="input-group" style="width: 140px;">
+                            <button class="btn btn-outline-secondary text-white border-secondary" type="button" onclick="changeQuantity(-1)">-</button>
+                            <input type="number" id="quantityInput" name="quantity" class="form-control bg-dark text-white text-center border-secondary" value="1" min="1" readonly>
+                            <button class="btn btn-outline-secondary text-white border-secondary" type="button" onclick="changeQuantity(1)">+</button>
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-3">
+                        <button type="submit" class="btn btn-info btn-lg px-5">장바구니 담기</button>
+                        <button type="button" class="btn btn-outline-light btn-lg px-5">바로 구매</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function changeQuantity(amount) {
+    const input = document.getElementById('quantityInput');
+    let currentValue = parseInt(input.value);
+    let newValue = currentValue + amount;
+    
+    if (newValue >= 1) {
+        input.value = newValue;
+    }
+}
+</script>
+{% endblock %}

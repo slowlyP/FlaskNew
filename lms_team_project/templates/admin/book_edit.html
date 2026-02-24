@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card bg-dark text-white border-warning shadow-lg p-4">
+                <h3 class="mb-4 text-warning"><i class="bi bi-pencil-square"></i> 교재 정보 수정</h3>
+                
+                <form action="/admin/book/edit/{{ book.id }}" method="POST" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label class="form-label text-light">교재 제목</label>
+                        <input type="text" name="title" class="form-control bg-dark text-white border-secondary" value="{{ book.title }}" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label text-light">저자</label>
+                        <input type="text" name="author" class="form-control bg-dark text-white border-secondary" value="{{ book.author }}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label text-light">가격</label>
+                        <input type="number" name="price" class="form-control bg-dark text-white border-secondary" value="{{ book.price }}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label text-light">교재 설명</label>
+                        <textarea name="description" class="form-control bg-dark text-white border-secondary" rows="5">{{ book.description }}</textarea>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label text-light">현재 이미지</label>
+                        <div class="mb-2">
+                            {% if book.book_image %}
+                            <img src="{{ url_for('static', filename='uploads/' + book.book_image) }}" alt="현재 표지" style="height: 150px; border-radius: 5px;">
+                            {% else %}
+                            <p class="text-secondary small">등록된 이미지가 없습니다.</p>
+                            {% endif %}
+                        </div>
+                        <label class="form-label text-light small">새 이미지로 교체 (필요 시)</label>
+                        <input type="file" name="book_image" class="form-control bg-dark text-white border-secondary">
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-warning fw-bold">수정 완료</button>
+                        <a href="/book/list" class="btn btn-outline-secondary">취소</a>
+                        <hr class="border-secondary">
+                        <a href="/admin/book/delete/{{ book.id }}" class="btn btn-outline-danger btn-sm" onclick="return confirm('정말 삭제하시겠습니까?')">교재 삭제</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

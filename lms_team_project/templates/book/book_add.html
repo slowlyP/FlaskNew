@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card bg-dark text-white border-info shadow-lg p-4">
+                <h3 class="mb-4 text-info"><i class="fas fa-book"></i> 새 교재 등록</h3>
+                
+                <form action="/admin/book/add" method="POST" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label class="form-label text-light">교재 제목</label>
+                        <input type="text" name="title" class="form-control bg-dark text-white border-secondary" placeholder="교재 제목을 입력하세요" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label text-light">저자</label>
+                        <input type="text" name="author" class="form-control bg-dark text-white border-secondary" placeholder="저자 이름">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label text-light">가격</label>
+                        <input type="number" name="price" class="form-control bg-dark text-white border-secondary" placeholder="판매 가격">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label text-light">교재 설명</label>
+                        <textarea name="description" class="form-control bg-dark text-white border-secondary" rows="4" placeholder="교재에 대한 상세 설명을 입력하세요"></textarea>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label text-light">교재 표지 이미지</label>
+                        <input type="file" name="book_image" class="form-control bg-dark text-white border-secondary">
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-info">등록하기</button>
+                        <a href="/book/list" class="btn btn-outline-secondary">취소</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

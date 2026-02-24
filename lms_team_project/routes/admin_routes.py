@@ -293,3 +293,103 @@ def score_add():
     return redirect(f"/my_score?student_id={student_id}")
 
         
+
+@admin_bp.route("/book/add", methods=["GET", "POST"])
+def book_add():
+    if session.get("role") != "admin":
+        return redirect("/book/list") # 경로 통일
+    
+    if request.method == "GET":
+        return render_template("admin/book_add.html")
+
+    title = request.form.get("title")
+    author = request.form.get("author") # 저자 추가
+    price = request.form.get("price")
+    description = request.form.get("description")
+    file = request.files.get("book_image")
+
+    filename = None
+    if file and file.filename != "":
+        filename = secure_filename(file.filename)
+        file.save(os.path.join(UPLOAD_FOLDER, filename))
+
+    conn = get_connection()
+    with conn.cursor() as cursor:
+        # SQL문에 author 추가
+        sql = "INSERT INTO books (title, author, price, description, book_image) VALUES (%s, %s, %s, %s, %s)"
+        cursor.execute(sql, (title, author, price, description, filename))
+    conn.commit()
+    conn.close()
+
+    return redirect("/book/list") # 경로 통일
+
+    # 교재 수정 페이지 및 처리
+@admin_bp.route("/book/edit/<int:book_id>", methods=["GET", "POST"])
+def admin_book_edit(book_id):
+    if session.get("role") != "admin":
+        return redirect("/")
+
+    conn = get_connection()
+
+    # 1. GET: 기존 데이터 불러오기
+    if request.method == "GET":
+        with conn.cursor() as cursor:
+            sql = "SELECT * FROM books WHERE id = %s"
+            cursor.execute(sql, (book_id,))
+            book = cursor.fetchone()
+        conn.close()
+        
+        if not book:
+            return "존재하지 않는 교재입니다.", 404
+            
+        return render_template("admin/book_edit.html", book=book)
+
+    # 2. POST: 데이터 업데이트 처리
+    title = request.form.get("title")
+    author = request.form.get("author")  # 저자 추가
+    price = request.form.get("price")
+    description = request.form.get("description")
+    file = request.files.get("book_image")
+
+    filename = None
+    with conn.cursor() as cursor:
+        if file and file.filename != "":
+            # 새 이미지를 업로드한 경우
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(UPLOAD_FOLDER, filename))
+            sql = """
+                UPDATE books 
+                SET title=%s, author=%s, price=%s, description=%s, book_image=%s 
+                WHERE id=%s
+            """
+            params = (title, author, price, description, filename, book_id)
+        else:
+            # 이미지는 그대로 둘 경우
+            sql = """
+                UPDATE books 
+                SET title=%s, author=%s, price=%s, description=%s 
+                WHERE id=%s
+            """
+            params = (title, author, price, description, book_id)
+        
+        cursor.execute(sql, params)
+
+    conn.commit()
+    conn.close()
+    return redirect("/book/list")  # 목록 페이지로 이동
+
+
+# 교재 삭제 (선택 사항)
+@admin_bp.route("/book/delete/<int:book_id>")
+def admin_book_delete(book_id):
+    if session.get("role") != "admin":
+        return redirect("/")
+
+    conn = get_connection()
+    with conn.cursor() as cursor:
+        sql = "DELETE FROM books WHERE id = %s"
+        cursor.execute(sql, (book_id,))
+    
+    conn.commit()
+    conn.close()
+    return redirect("/book/list")
